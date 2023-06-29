@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  app_init:
+    image: "node:18-alpine"
+    container_name: "plux-backend"
+    links: [
+      plux-mongodb,
+    ]
+    entrypoint: "echo 'Containers successfully initialized.'"
+
+  plux-mongodb:
+    image: mongo:6.0.4
+    container_name: "plux-mongodb"
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/db
